@@ -1,0 +1,16 @@
+{
+  "name": "05-express",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Express demo",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["express"],
+  "author": "David Andersson",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
