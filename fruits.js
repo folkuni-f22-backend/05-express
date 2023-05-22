@@ -1,11 +1,19 @@
+import express from 'express'
+const router = express.Router()
+
+// HTTP metoder: GET, POST, PUT, DELETE
+// CRUD: Create, Read, Update, Delete
+
+
 let fruits = ['strawberry', 'pear', 'apple', 'banana', 'orange']
 
-function getAll(req, res) {
+// Man skriver inte med "/fruits" eftersom det står i server.js!
+router.get('/', (req, res) => {
 	console.log('GET /fruits')
 	res.send(fruits)
-}
+})
 
-function getOne(req, res) {
+router.get('/:index', (req, res) => {
 	let maybeIndex = req.params.index
 	// index kommer från URL
 	// index har datatypen String, eftersom det kommer från URL som också är String
@@ -30,13 +38,20 @@ function getOne(req, res) {
 		let fruit = fruits[index]
 		res.send(fruit)
 	}
-}
+})
 
-/*
-5c* Men om ett request innehåller en URL parameter med namnet index så ska servern skicka tillbaka frukten med det indexet.Tänk på att skicka en lämplig HTTP status code om index inte är ett giltigt index.
+router.post('/', (req, res) => {
+	console.log('POST /fruits, body är: ', req.body)
+	// Plocka ut fruktens namn, om det finns
+	let maybeFruit = req.body?.name
 
-5d* Om index är för högt ska servern skicka ett slumpvis valt element i arrayen, i stället för en felkod. 
-*/
+	if( maybeFruit !== '' ) {
+		fruits.push(maybeFruit)
+		res.sendStatus(200)
+	}
+	else {
+		res.sendStatus(400)
+	}
+})
 
-
-export { getAll, getOne }
+export default router

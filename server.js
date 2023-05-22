@@ -1,7 +1,7 @@
 // Importera npm-paket och filer
 import express from 'express'
 import { getGuestbook } from './guestbook.js'
-import { getAll, getOne } from './fruits.js'
+import fruitsRouter from './fruits.js'
 
 
 // Konfigurera webbservern
@@ -10,6 +10,7 @@ const PORT = 1337
 
 
 // Lägga till middleware
+app.use( express.json() )
 
 
 // Lägga till routes
@@ -38,8 +39,9 @@ app.get('/grilla', (req, res) => {
 })
 
 
-app.get('/fruits', getAll)
-app.get('/fruits/:index', getOne)
+// app.get('/fruits', getAll)
+// app.get('/fruits/:index', getOne)
+app.use('/fruits', fruitsRouter)
 
 
 // Starta servern
