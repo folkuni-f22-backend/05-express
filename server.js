@@ -1,5 +1,6 @@
 // Importera npm-paket och filer
 import express from 'express'
+import { getGuestbook } from './guestbook.js'
 
 
 // Konfigurera webbservern
@@ -21,16 +22,9 @@ app.get('/hedgehog', (req, res) => {
 	res.send('Hedgehogs are the best')
 })
 
-/*
-4b Lägg funktionen som guestbook - endpoint använder i en separat fil och importera den till servern.
-*/
+
 // För att spara antalet besök permanent, behöver man en databas
-let visits = 0
-app.get('/guestbook', (req, res) => {
-	visits = visits + 1
-	// visits++
-	res.send('Du är besökare nummer ' + visits)
-})
+app.get('/guestbook', getGuestbook)
 
 
 
