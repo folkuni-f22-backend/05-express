@@ -1,7 +1,7 @@
 // Importera npm-paket och filer
 import express from 'express'
 import { getGuestbook } from './guestbook.js'
-import { getAll } from './fruits.js'
+import { getAll, getOne } from './fruits.js'
 
 
 // Konfigurera webbservern
@@ -39,6 +39,7 @@ app.get('/grilla', (req, res) => {
 
 
 app.get('/fruits', getAll)
+app.get('/fruits/:index', getOne)
 
 
 // Starta servern
