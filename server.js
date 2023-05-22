@@ -17,6 +17,9 @@ app.get('/', (req, res) => {
 	// Alla RUOTES måste anropa SEND exakt en gång
 	res.send('Hello from server')
 })
+app.get('/hedgehog', (req, res) => {
+	res.send('Hedgehogs are the best')
+})
 
 
 // Starta servern
